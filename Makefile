@@ -1,11 +1,14 @@
 CC 				:= gcc
-CFLAGS 		:= -Wall -Wextra -Wpedantic -O2
-TARGET 		:= build/example
-LDFLAGS 	:= -lm
+CFLAGS 		:= -Wall -Wextra -Wpedantic -O3
+LDLIBS 	:= -lm
+
 SRC 			:= example.c
 HEADERS 	:= p6ppm.h
+
 BUILD 		:= build
 VIDEO			:= example.mp4
+
+TARGET 		:= $(BUILD)/example
 
 FFMPEG := $(shell command -v ffmpeg)
 
@@ -14,7 +17,7 @@ $(error ffmpeg not found. please install to run the example)
 endif
 
 $(TARGET): $(SRC) $(HEADERS) | $(BUILD)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LDLIBS)
 
 $(BUILD):
 	mkdir -p $(BUILD)
