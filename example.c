@@ -69,10 +69,20 @@ int main() {
 }
 
 // u,v in [0, 1] (does not account for aspect ratio)
+// r, g, and b must be between 0.0f...1.0f (clamped)
 void shader(double u, double v, double W, double H, double time, double *r,
             double *g, double *b) {
   // do your shader here
-  *r = u;
-  *g = v;
-  *b = fabs(sin(time));
+  double x = u * 10.0;
+  double y = v * 10.0;
+
+  double c = sin(x + time) + sin(y * .5f + time) +
+             sin(sqrt(x * x + y * y) * 1.0f + 2.0f * time);
+
+  c = c / 3.0;
+  c = c * 0.5 + 0.5;
+
+  *r = 0.5 + 0.5 * sin(c * 2.0 * M_PI);
+  *g = 0.5 + 0.5 * sin(c * 2.0 * M_PI + 1.0);
+  *b = 0.5 + 0.5 * sin(c * 2.0 * M_PI + 2.0);
 }
