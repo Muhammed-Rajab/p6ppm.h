@@ -38,8 +38,8 @@ int main() {
       for (size_t x = 0; x < W; x += 1) {
 
         // uv coordinates
-        double u = (double)x / W;
-        double v = (double)y / H;
+        double u = (double)x / (W - 1);
+        double v = (double)y / (H - 1);
 
         // r, g, b in range [0, 1]
         double r = 0, g = 0, b = 0;
