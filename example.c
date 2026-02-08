@@ -68,6 +68,7 @@ int main() {
   return 0;
 }
 
+// u,v in [0, 1] (does not account for aspect ratio)
 void shader(double u, double v, double W, double H, double time, double *r,
             double *g, double *b) {
   // do your shader here
